@@ -108,6 +108,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Balance } from "@/components/Balance";
+import { Transaction } from "@/components/Transaction";
 
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import * as web3 from "@solana/web3.js";
@@ -117,6 +118,7 @@ import { FC, useState } from "react";
 export const SendSol: FC = () => {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState(0);
+  const [status, setStatus] = useState("");
 
   const [txSig, setTxSig] = useState("");
   const { connection } = useConnection();
@@ -146,6 +148,7 @@ export const SendSol: FC = () => {
       transaction.add(sendSolInstruction);
       const signature = await sendTransaction(transaction, connection);
       setTxSig(signature);
+      setStatus("success");
     } catch (error) {
       console.error("Transaction failed", error);
     }
@@ -196,16 +199,7 @@ export const SendSol: FC = () => {
           <Balance />
         </div>
       </div>
-      {txSig && (
-        <div>
-          <p>
-            Transaction Signature:{" "}
-            <a href={link()} target="_blank" rel="noopener noreferrer">
-              {txSig}
-            </a>
-          </p>
-        </div>
-      )}
+      <Transaction txLink={link()} amount={amount} status={status} />
     </div>
   );
 };
