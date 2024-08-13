@@ -25,7 +25,7 @@ const Appbar = () => {
             ? `${publicKey.toBase58().slice(0, 4)}...${publicKey
                 .toBase58()
                 .slice(-4)}`
-            : "Connect Wallet"}
+            : "connect wallet"}
         </Button>
       </div>
       <div className="border-b-2"></div>

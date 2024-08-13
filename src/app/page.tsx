@@ -11,10 +11,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { Balance } from "@/components/Balance";
 
 const SendSol = () => {
-  const [balance, setBalance] = useState(0);
   return (
     <div className="flex justify-between">
       <Card className="w-[350px] m-6">
@@ -43,7 +42,7 @@ const SendSol = () => {
         </CardFooter>
       </Card>
       <div>
-        <div className="m-6 border-2 px-4 py-1 ">balance : {balance} </div>
+        <Balance />
       </div>
     </div>
   );
