@@ -18,13 +18,22 @@ export const Airdrop: FC = () => {
   const { connection } = useConnection();
   const { publicKey } = useWallet();
   const [amount, setAmount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function requestAirdrop() {
-    if (publicKey) {
-      await connection.requestAirdrop(
-        publicKey,
-        amount * web3.LAMPORTS_PER_SOL
-      );
+    setIsLoading(true);
+    try {
+      if (publicKey) {
+        await connection.requestAirdrop(
+          publicKey,
+          amount * web3.LAMPORTS_PER_SOL
+        );
+        alert("airdrop successful");
+      }
+    } catch (error) {
+      console.error("Airdrop failed", error);
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
@@ -33,7 +42,7 @@ export const Airdrop: FC = () => {
         <CardHeader className="rounded-xl">
           <CardTitle className="text-xl">SOL faucet</CardTitle>
           <CardDescription className="font-gilroy">
-            airdrop some devnet sol
+            Airdrop some devnet SOL
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,7 +67,7 @@ export const Airdrop: FC = () => {
             onClick={requestAirdrop}
             className="border border-neutral-50 rounded-xl bg-fuchsia-50 text-black hover:text-neutral-50"
           >
-            airdrop
+            {isLoading ? "dropping some sol..." : "airdrop"}
           </Button>
         </CardFooter>
       </Card>

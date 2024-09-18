@@ -15,6 +15,7 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import * as web3 from "@solana/web3.js";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { FC, useState } from "react";
+import { Spinner } from "@nextui-org/spinner";
 
 export const SendSol: FC = () => {
   const [address, setAddress] = useState("");
@@ -24,6 +25,7 @@ export const SendSol: FC = () => {
   const [txSig, setTxSig] = useState("");
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
+  const [isLoading, setIsLoading] = useState(false);
 
   const link = () => {
     return txSig
@@ -37,6 +39,7 @@ export const SendSol: FC = () => {
       alert("connect wallet");
       return;
     }
+    setIsLoading(true);
     try {
       const transaction = new web3.Transaction();
       const recipientPubKey = new web3.PublicKey(address);
@@ -50,19 +53,13 @@ export const SendSol: FC = () => {
       const signature = await sendTransaction(transaction, connection);
       setTxSig(signature);
       setStatus("success");
-      toast.success("🦄 send sol!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      alert(
+        `sol transferred successfully. transaction signature: ${signature}`
+      );
     } catch (error) {
       console.error("Transaction failed", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -105,17 +102,14 @@ export const SendSol: FC = () => {
           </CardContent>
           <CardFooter className="rounded-xl">
             <Button
+              disabled={isLoading}
               onClick={sendsol}
-              className="border border-neutral-50 rounded-xl bg-fuchsia-50 text-black hover:text-neutral-50"
+              className="border border-neutral-50 rounded-xl bg-fuchsia-50 text-black hover:text-neutral-50 flex gap-4"
             >
-              Send
+              {isLoading ? "sending..." : "send"}
             </Button>
           </CardFooter>
         </Card>
-        {/* <div>
-          <Balance />
-          <Airdrop />
-        </div> */}
       </div>
       {/* <Transaction txLink={link()} amount={amount} status={status} /> */}
     </div>
