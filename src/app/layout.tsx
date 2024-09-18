@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 import { WalletContextProvider } from "./context/WalletContextProvider";
 import Appbar from "@/components/Appbar";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const denton = localFont({ 
+  src: '../../public/fonts/Denton-Font-Family/Denton Test Thin 100.otf',
+  variable: '--font-denton'
+})
+const gilroy = localFont({ 
+  src: '../../public/fonts/gilroy/Gilroy-Regular.ttf',
+  variable: '--font-gilroy'
+})
 
 export const metadata: Metadata = {
   title: "sendsol.fun",
@@ -18,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${denton.className} ${gilroy.className}`}>
         <WalletContextProvider>
           <Appbar />
           {children}

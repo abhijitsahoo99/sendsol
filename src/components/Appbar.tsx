@@ -16,10 +16,10 @@ const Appbar = () => {
   return (
     <>
       <div className="flex justify-between items-center m-4">
-        <p>sendsol.fun</p>
+        <p className="font-denton text-2xl">sendsol.fun</p>
         <Button
           onClick={handleWalletAction}
-          className="bg-white hover:bg-fuchsia-50 text-blakc"
+          className="border-2 border-neutral-50 bg-fuchsia-50 text-black hover:text-neutral-50"
         >
           {publicKey
             ? `${publicKey.toBase58().slice(0, 4)}...${publicKey
