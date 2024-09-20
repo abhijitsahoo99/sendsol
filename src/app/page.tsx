@@ -11,7 +11,7 @@ const Home = () => {
         gm, <br></br> welcome to sendsol.fun, add some devnet sol to your wallet
         address, see the changes in the balance and send SOL to your friends -
         in case you wanna launch your own token- head over to{" "}
-        <Link href="https://tokendelegation.fun" className="text-violet-500">
+        <Link href="www.tokendelegation.fun" className="text-violet-500">
           {" "}
           tokendelegation.fun
         </Link>{" "}
