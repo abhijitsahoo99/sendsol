@@ -15,7 +15,7 @@ const Appbar = () => {
   };
   return (
     <>
-      <div className="flex justify-between items-center m-4">
+      <div className="flex justify-between items-center m-4 ">
         <p className="font-denton text-2xl">sendsol.fun</p>
         <Button
           onClick={handleWalletAction}

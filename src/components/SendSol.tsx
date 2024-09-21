@@ -66,7 +66,7 @@ export const SendSol: FC = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <Card className="w-[500px] m-6 mx-8">
+        <Card className="w-[500px] mx-8">
           <CardHeader className="rounded-xl">
             <CardTitle className="text-xl">Send SOL</CardTitle>
             <CardDescription className="font-gilroy">

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-12 min-h-screen">
+    <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-12 min-h-[90vh]">
       <div className="w-full md:w-[50%] text-lg md:text-4xl text-center md:text-left mb-8 md:mb-0 ">
         gm, <br></br> welcome to sendsol.fun, add some devnet sol to your wallet
         address, see the changes in the balance and send SOL to your friends -
@@ -22,7 +22,7 @@ const Home = () => {
         </Link>{" "}
         enjoy :)
       </div>
-      <div className="w-full md:w-auto">
+      <div className="w-full md:w-auto flex flex-col h-[90vh] justify-evenly">
         <Balance />
         <Airdrop />
         <SendSol />
