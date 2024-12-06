@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardFooter,
 } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import * as web3 from "@solana/web3.js";
@@ -19,7 +20,7 @@ export const Airdrop: FC = () => {
   const { publicKey } = useWallet();
   const [amount, setAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { toast } = useToast();
   async function requestAirdrop() {
     setIsLoading(true);
     try {
@@ -28,11 +29,17 @@ export const Airdrop: FC = () => {
           publicKey,
           amount * web3.LAMPORTS_PER_SOL
         );
-        alert("airdrop successful");
+        toast({
+          title: "Airdrop successful",
+          variant: "default",
+        });
       }
     } catch (error) {
       console.error("Airdrop failed", error);
-      alert("airdrop failed");
+      toast({
+        title: "Airdrop failed",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
