@@ -32,6 +32,7 @@ export const Airdrop: FC = () => {
       }
     } catch (error) {
       console.error("Airdrop failed", error);
+      alert("airdrop failed");
     } finally {
       setIsLoading(false);
     }
